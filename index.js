@@ -29,12 +29,10 @@ function checkMark(event, index) {
 
     if (checkbox.checked) {
         label.classList.add('checked');
-        toDoItem.status === 'Done';
-        console.log(toDoItem.status)
+        toDoItem.status = 'Done';
     } else {
         label.classList.remove('checked');
-        toDoItem.status === 'toBeDone';
-        console.log(toDoItem.status)
+        toDoItem.status = 'toBeDone';
     } 
 }
 
