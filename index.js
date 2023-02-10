@@ -12,26 +12,29 @@ function addToDo() {
     const toDoContainer = document.querySelector('.todo-list');
     toDoContainer.innerHTML = '';
     
-    list.forEach(function(toDoItem) {
+    list.forEach(function(toDoItem, index) {
         const toDoStructure = 
         `<div class="todo-list_item">
-          <label class="toBeDone"><input type="checkbox" id="to-do-item" value="to-do-item" onclick="checkMark(event)">${toDoItem.text}</label>
+          <label class="toBeDone"><input type="checkbox" id="to-do-item" value="to-do-item" onclick="checkMark(event, ${index})">${toDoItem.text}</label>
         </div>`;
         toDoContainer.innerHTML = toDoContainer.innerHTML + toDoStructure;
     });
 
 }
 
-function checkMark(event) {
+function checkMark(event, index) {
     const checkbox = event.target;
     const label = checkbox.parentNode;
+    const toDoItem = list[index];
 
     if (checkbox.checked) {
         label.classList.add('checked');
-        // toDoItem.status === Done
+        toDoItem.status === 'Done';
+        console.log(toDoItem.status)
     } else {
         label.classList.remove('checked');
-        // toDoItem.status === toBeDone
+        toDoItem.status === 'toBeDone';
+        console.log(toDoItem.status)
     } 
 }
 
