@@ -1,4 +1,4 @@
-const list = [];
+let list = [];
 
 function addToDo() {
     const inputValue = document.querySelector('.todo-actions_input').value;
@@ -30,58 +30,29 @@ function checkMark(event, index) {
     if (checkbox.checked) {
         label.classList.add('checked');
         toDoItem.status = 'Done';
+
     } else {
         label.classList.remove('checked');
         toDoItem.status = 'toBeDone';
     } 
+
 }
 
-
-
-
-
-
-
-// function checkMark(event) {
-//   const checkbox = event.target;
-//   const label = checkbox.parentNode;
-//   if (checkbox.checked) {
-//       label.classList.add('checked');
-//   } else {
-//       label.classList.remove('checked');
-//   }
-// }
-
-
-
-// function changeStatus(todo) {
-//     if (todo.status === 'toBeDone') {
-//       todo.status = 'Done';
-//       console.log(todo.status)
-//     }
-//   }
-
-// changeStatus(toDoObject);
-
-// function checkMark() {
-//     document.querySelector('.toBeDone').classList.toggle("checked")
+function removeDone() {
+    // Filtrar los elementos que tienen el status 'Done'
+    list = list.filter(function(hola) {
+      return hola.status !== 'Done';
+    });
   
-// }
-
-// const checkbox =  document.querySelector('.toBeDone');
-// checkbox.addEventListener("click", function() {
-//   const todoListItems = document.querySelectorAll(".todo-list_item");
-//   todoListItems.forEach(function(item) {
-//     item.status = "done";
-//     console.log('item.status')
-//   });
-// });
+    // Actualizar la lista en el HTML
+    const toDoContainer = document.querySelector('.todo-list');
+    toDoContainer.innerHTML = '';
   
-
-// function checkMark() {
-//     if (toDoObject.status === "done") {
-//         document.querySelector('.to-do').classList.add("checked");
-//       } else {
-//         document.querySelector('.to-do').classList.remove("checked");
-//       }   
-// }
+    list.forEach(function(toDoItem, index) {
+      const toDoStructure = 
+      `<div class="todo-list_item">
+        <label class="${toDoItem.status}"><input type="checkbox" id="to-do-item" value="to-do-item" onclick="checkMark(event, ${index})">${toDoItem.text}</label>
+      </div>`;
+      toDoContainer.innerHTML = toDoContainer.innerHTML + toDoStructure;
+    });
+  }
